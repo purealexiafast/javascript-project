@@ -1,41 +1,55 @@
-// Assignment code here
+let length = (prompt("Enter how many characters you would like your password to be. Choose between 8 and 128 characters."));
 
-let length ="";
-let number;
-let special;
-let upperCase;
-let lowerCase;
-
-//prompt to ask user how long they would like thier password to be
-
-function generatePassword(){
-  let length = (prompt("How long would you like your password to be? Please choose between 8 and 128 characters."));
-   
-//Loop if user chooses a number outside of the parameters
-
-while(length <=7 || length >=129){
-  alert("Please choose a password length between 8 and 128 characters.");
-  let length = (prompt ("How long would you like your password to be?"));
-}
+while(length < 8 || length > 128){
+length = (prompt("Password length must be between 8 and 128 characters, please try again."));
 }
 
+let upperCase = confirm("Would you like to include uppercase letters in your password?");
+let lowerCase = confirm("Would you like to include lowercase letters in your password?");
+let number = confirm("Would you like to include numbers in your password?");
+let special = confirm("Would you like to include special characters in your password?");
 
-
-
-
-
-
-
-
-
+while (!(upperCase || lowerCase || number || special)){
+  alert("Please select at least one character type.");
+  upperCase = confirm("Would you like to include uppercase letters in your password?");
+  lowerCase = confirm("Would you like to include lowercase letters in your password?");
+  number = confirm("Would you like to include numbers in your password?");
+  special = confirm("Would you like to include special characters in your password?");
+}
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
-function generatePassword(){
+let min = 8;
+let max = 128;
 
-  return "Generated password will go here.";
+function length (min, max){
+  let arr = [];
+  for (let i = min; i<= max; i++){
+    arr.push(i);
+  }
+  return arr;
 }
+
+  const options ={
+  passwordLength = length (min, max);
+  upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  lowerCase ="abcdefghijklmnopqrstuvwxyz";
+  numbers ="0123456789";
+  symbols ="!@#$%^&*><+_-=";
+  }
+
+function generatePassword(length){
+  let password=" ";
+  const characters = options.length;
+  for ( let i=0; i<length; i++){
+    password += options.charAt(Math.floor(Math.random() * characters ));
+  }
+
+  return password;
+}
+
+console.log(generatePassword(length));
 
 
 // Write password to the #password input
@@ -61,7 +75,7 @@ generateBtn.addEventListener("click", writePassword);
 
   // c. When prompted for character types, user selects lowercase, uppercase,numeric and/or special characters
   
-  // .d After answering all prompts, at least one chracter type should be selected
+  // .d After answering all prompts, at least one character type should be selected
 
   // 2) When all prompts are answered a password is generated that matches the selected criteria
 
