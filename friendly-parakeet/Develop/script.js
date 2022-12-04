@@ -1,55 +1,43 @@
-let length = (prompt("Enter how many characters you would like your password to be. Choose between 8 and 128 characters."));
+//Assignment Code Here:
 
-while(length < 8 || length > 128){
-length = (prompt("Password length must be between 8 and 128 characters, please try again."));
+//Prompt when user clicks the button.
+
+  let length = (prompt("Enter how many characters you would like your password to be. Choose between 8 and 128 characters."));
+
+  //Loop if user selects incorrect number.
+  while(length < 8 || length > 128){
+  length = (prompt("Password length must be between 8 and 128 characters, please try again."));
+  }
+
+  //Confirm which type of characters to use in password.
+  let upperCase = confirm("Would you like to include uppercase letters in your password?");
+  let lowerCase = confirm("Would you like to include lowercase letters in your password?");
+  let number = confirm("Would you like to include numbers in your password?");
+  let special = confirm("Would you like to include special characters in your password?");
+
+  //Loop if user doesn't select any character types.
+  while (!(upperCase || lowerCase || number || special)){
+    alert("Please select at least one character type.");
+    upperCase = confirm("Would you like to include uppercase letters in your password?");
+    lowerCase = confirm("Would you like to include lowercase letters in your password?");
+    number = confirm("Would you like to include numbers in your password?");
+    special = confirm("Would you like to include special characters in your password?");
 }
 
-let upperCase = confirm("Would you like to include uppercase letters in your password?");
-let lowerCase = confirm("Would you like to include lowercase letters in your password?");
-let number = confirm("Would you like to include numbers in your password?");
-let special = confirm("Would you like to include special characters in your password?");
+//Define Characters
 
-while (!(upperCase || lowerCase || number || special)){
-  alert("Please select at least one character type.");
-  upperCase = confirm("Would you like to include uppercase letters in your password?");
-  lowerCase = confirm("Would you like to include lowercase letters in your password?");
-  number = confirm("Would you like to include numbers in your password?");
-  special = confirm("Would you like to include special characters in your password?");
-}
+
+  upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  lowerCase ="abcdefghijklmnopqrstuvwxyz";
+  number ="0123456789";
+  special ="!@#$%^&*><+_-=";
+
+
+
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
-
-let min = 8;
-let max = 128;
-
-function length (min, max){
-  let arr = [];
-  for (let i = min; i<= max; i++){
-    arr.push(i);
-  }
-  return arr;
-}
-
-  const options ={
-  passwordLength = length (min, max);
-  upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  lowerCase ="abcdefghijklmnopqrstuvwxyz";
-  numbers ="0123456789";
-  symbols ="!@#$%^&*><+_-=";
-  }
-
-function generatePassword(length){
-  let password=" ";
-  const characters = options.length;
-  for ( let i=0; i<length; i++){
-    password += options.charAt(Math.floor(Math.random() * characters ));
-  }
-
-  return password;
-}
-
-console.log(generatePassword(length));
 
 
 // Write password to the #password input
