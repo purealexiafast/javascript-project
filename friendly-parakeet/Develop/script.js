@@ -1,7 +1,7 @@
 //Assignment Code Here:
 
 //Prompt when user clicks the button.
-
+  function getUserOptions(){
   let length = (prompt("Enter how many characters you would like your password to be. Choose between 8 and 128 characters."));
 
   //Loop if user selects incorrect number.
@@ -23,17 +23,51 @@
     number = confirm("Would you like to include numbers in your password?");
     special = confirm("Would you like to include special characters in your password?");
 }
+let options = {
+  length,
+  upperCase,
+  lowerCase,
+  number,
+  special
 
-//Define Characters
+}
+return options
+}
 
+//Password Generator
+const characters = {
+  upper : "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  lower : "abcdefghijklmnopqrstuvwxyz",
+  numbers : "0123456789",
+  symbols :"!@#$%^&*><+_-="
+}
 
-  upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  lowerCase ="abcdefghijklmnopqrstuvwxyz";
-  number ="0123456789";
-  special ="!@#$%^&*><+_-=";
+const generatePassword = () => {
+  let options= getUserOptions()
+console.log(options);
+let possibleCharacters= "";
 
-
-
+if (options.upperCase){
+  possibleCharacters += characters.upper
+}
+if (options.lowerCase){
+  possibleCharacters += characters.lower
+}
+if(options.number){
+  possibleCharacters += characters.numbers
+}
+if (options.special){
+  possibleCharacters += characters.special
+}
+possibleCharacters = possibleCharacters.split("")
+let password = "";
+for (let i = 0; i < parseInt(options.length); i++) {
+  let randomIndex = Math.floor(Math.random()* possibleCharacters.length)
+  let randomCharacter = possibleCharacters[randomIndex]
+password += randomCharacter
+}
+return password;
+}
 
 
 // Get references to the #generate element
